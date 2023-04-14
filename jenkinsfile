@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+        dockerfile {
+           image 'dockerfile'
+        }
+    }
+    stages {
+        stage('Checkout') {
+            steps{
+                script{
+                    git branch: 'main', url: 'https://github.com/rincevent38/file_python.git'
+                    sh "ls -lart ./*"
+                }
+            }
+        }
+        stage('exe') {
+            steps{
+                //sh 'sudo python -m pip install requests bs4'
+                sh 'python devise.py'
+            }
+            
+        }
+    }
+    
+}
